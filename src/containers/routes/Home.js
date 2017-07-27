@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Hello from 'components/Hello';
-import * as sample from 'redux/modules/sample';
+import Hello from '../../components/Hello';
+import * as sample from '../../redux/modules/sample';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 

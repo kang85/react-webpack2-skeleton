@@ -1,0 +1,81 @@
+service: userPages
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ap-northeast-2
+  memorySize: 256
+  timeout: 60
+  stage: dev
+  ver: 1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Resource: "*"
+      Action:
+        - "cloudwatch:*"
+        - "dynamodb:*"
+        - "events:*"
+        - "iam:ListAttachedRolePolicies"
+        - "iam:ListRolePolicies"
+        - "iam:ListRoles"
+        - "iam:PassRole"
+        - "kms:Encrypt"
+        - "kms:Decrypt"
+        - "kinesis:*"
+        - "lambda:*"
+        - "logs:*"
+        - "s3:*"
+        - "apigateway:*"
+        - "ec2:*"
+        - "ec2:CreateNetworkInterface"
+        - "ec2:DescribeNetworkInterfaces"
+        - "ec2:DeleteNetworkInterface"
+  vpc:
+    securityGroupIds:
+      - sg-5b18fb33
+    subnetIds:
+      - subnet-1452d059
+      - subnet-a45d15cd
+
+custom: 
+    stage: ${opt:stage, self:provider.stage}
+    logSequence: 1
+    authorizer:
+      arn: arn:aws:lambda:ap-northeast-2:407506469676:function:coolsms-authorizer-prod-coolsmsAuthorizer
+      identitySource: method.request.header.Authorization
+
+package:
+  excludeDevDependencies: false
+  include:
+    - "serverless.yml"
+  exclude:
+    - "*.mp3"
+    - "test/*"
+    - "src/*"
+    - ".git/**"
+    - ".serverless/*.zip"
+    - "node_modules/**"
+
+functions:
+  index:
+    handler: dist/index.handler
+    description: (${self:service}/${self:custom.stage}) ${self:service} 의 index
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+      - http:
+          path: /
+          method: ANY
+          cors: true
+
+resources: 
+  Resources: 
+    IndexLogGroup:
+      Properties: 
+        LogGroupName: /aws/lambda/${self:service}-${self:custom.stage}-index-${self:custom.logSequence}
+        RetentionInDays: "30"
+
+plugins: 
+  - serverless-prune-plugin

@@ -1,5 +1,5 @@
 const path = require('path');
-const paths = require('./paths');
+const paths = require('../paths');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -13,8 +13,8 @@ module.exports = {
             paths.appStyle,
     ],
     output: {
-        path: paths.appBuild,
-        filename: 'static/js/[name].bundle.js',
+        path: paths.devBuild,
+        filename: 'assets/[name].bundle.js',
         publicPath: '/'
     },
     module: {
@@ -29,7 +29,7 @@ module.exports = {
                 loader: 'url',
                 query: {
                     limit: 10000,
-                    name: 'static/media/[name].[hash:8].[ext]'
+                    name: 'assets/[name].[hash:8].[ext]'
                 }
             },
             {

@@ -1,4 +1,4 @@
-const paths = require('./paths');
+const paths = require('../paths');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -6,12 +6,16 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 process.env.NODE_ENV = 'production';
 
 module.exports = {
+
     context: paths.context,
+
     entry: [paths.appIndexJs,  paths.appStyle],
+
     output: {
         path: paths.appBuild,
-        filename: 'static/js/[name].bundle.js'
+        filename: 'assets/[name].bundle.js'
     },
+
     module: {
         rules: [
             {
@@ -24,7 +28,7 @@ module.exports = {
                 loader: 'url',
                 query: {
                     limit: 10000,
-                    name: 'static/media/[name].[hash:8].[ext]'
+                    name: 'assets/[name].[hash:8].[ext]'
                 }
             },
             {
@@ -32,7 +36,11 @@ module.exports = {
                 exclude: [/node_modules/],
                 use: [{
                     loader: 'babel-loader',
-                    options: { presets: ['react-app'] }
+                    options: { 
+                        presets: ['react-app'] ,
+                        plugins: ['transform-es2015-destructuring',
+                            'transform-object-rest-spread']
+                    }
                 }],
             },
             {
@@ -89,6 +97,7 @@ module.exports = {
         ],
     },
     plugins: [
+
         // Generates an `index.html` file with the <script> injected.
         new HtmlWebpackPlugin({
             inject: true,
@@ -106,14 +115,30 @@ module.exports = {
                 minifyURLs: true
             }
         }),
-        new ExtractTextPlugin('static/css/[name].css'),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'static/js/vendor.js',
-            minChunks: 2,
-        }),
+        new ExtractTextPlugin('assets/[name].css'),
         new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
         new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'assets/vendor.js',
+            minChunks: 2,
+        }),
+        new webpack.NormalModuleReplacementPlugin(
+            /^\.\/routes\/Routes$/,
+            './routes/RoutesAsync'
+        )
+
+    ],
+
+    resolve: {
+        modules: [
+            paths.context,
+            'node_modules'
+        ]
+    }
+};
+
+/*
         new webpack.optimize.UglifyJsPlugin({
           compress: {
             screw_ie8: true,
@@ -127,15 +152,4 @@ module.exports = {
             screw_ie8: true
           }
         }),
-        new webpack.NormalModuleReplacementPlugin(
-            /^\.\/routes\/Routes$/,
-            './routes/RoutesAsync'
-        )
-    ],
-    resolve: {
-        modules: [
-            paths.context,
-            'node_modules'
-        ]
-    }
-};
+        */

@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
-import createPromiseAction from 'helpers/createPromiseAction';
+import createPromiseAction from '../../helpers/createPromiseAction';
 import { Map } from 'immutable';
-import pender from 'helpers/pender';
+import pender from '../../helpers/pender';
 
 const SOMETHING_DO = 'sample/SOMETHING_DO';
 const DATA_FETCH = 'sample/DATA_FETCH';

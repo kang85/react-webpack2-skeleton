@@ -1,4 +1,4 @@
-const paths = require('./paths');
+const paths = require('../paths');
 const webpack = require('webpack');
 
 process.env.NODE_ENV = 'development';

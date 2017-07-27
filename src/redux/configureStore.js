@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
-import promiseWaiter from 'helpers/promiseWaiter';
+import promiseWaiter from '../helpers/promiseWaiter';
 
 import modules from './modules';
 

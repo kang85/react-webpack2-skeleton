@@ -8,12 +8,16 @@ function resolvePath(relativePath) {
 }
 
 module.exports = {
+    lambdaIndex: resolvePath('functions/index/index.js'),
+    dist: resolvePath('dist/'),
+    public: resolvePath('public/'),
     context: resolvePath('src/'),
     appIndexJs: resolvePath('src/index.js'),
     appStyle: resolvePath('src/styles/main.scss'),
     appHtml: resolvePath('public/index.html'),
     vendor: ['react', 'react-dom'],
     appBuild: resolvePath('build'),
+    devBuild: resolvePath('buildDev'),
     serverRendererJs: resolvePath('src/serverRenderer.js'),
     server: resolvePath('server')
 }

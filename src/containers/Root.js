@@ -10,13 +10,19 @@ import transit from 'transit-immutable-js';
 
 // deserialize the JSON to Immutable
 const preloadedState = window.__PRELOADED_STATE__ ? transit.fromJSON(window.__PRELOADED_STATE__) : undefined;
-
 const store = configureStore(preloadedState);
+
+let path = ""
+if(window.location) {
+  console.log(window.location)
+  path = window.location.pathname
+  console.log("path: ", path)
+}
 
 console.log(store);
 const Root = () => (
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename={path}>
       <App/>
     </BrowserRouter>
   </Provider>

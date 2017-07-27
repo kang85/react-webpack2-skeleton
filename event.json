@@ -1,0 +1,56 @@
+{
+    "resource": "/{proxy+}",
+    "path": "/userDev/assets/bundle.js",
+    "httpMethod": "GET",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "KR",
+        "Host": "solapi.com",
+        "Referer": "https://solapi.com/userDev/index",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36",
+        "Via": "2.0 aa34063cfef3f7efa1858d5d7c6ab717.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "2RkY3ZmKWiuHWHKF7NuWkhIF16FZhc8VdX46UFgCa_W82aJuRH_2zQ==",
+        "X-Amzn-Trace-Id": "Root=1-597989a1-4aa3dd3b60642a2f0935f7dd",
+        "X-Forwarded-For": "210.222.54.94, 54.182.213.125",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "queryStringParameters": null,
+    "pathParameters": {
+        "proxy": "assets/bundle.js"
+    },
+    "stageVariables": null,
+    "requestContext": {
+        "path": "/userDev/assets/bundle.js",
+        "accountId": "407506469676",
+        "resourceId": "x2zjxn",
+        "stage": "dev",
+        "requestId": "beeb6180-7295-11e7-9793-a384cfe24ee4",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "apiKey": "",
+            "sourceIp": "210.222.54.94",
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36",
+            "user": null
+        },
+        "resourcePath": "/{proxy+}",
+        "httpMethod": "GET",
+        "apiId": "2dgpyqnwza"
+    },
+    "body": null,
+    "isBase64Encoded": false
+}
